@@ -17,6 +17,7 @@ def hackernews_topstory_ids() -> List[int]:
 
     API Docs: https://github.com/HackerNews/API#new-top-and-best-stories
     """
+    context.log.info("Tushar test: starting to fetch HackerNews top stories")
     newstories_url = "https://hacker-news.firebaseio.com/v0/topstories.json"
     top_500_newstories = requests.get(newstories_url).json()
     return top_500_newstories
