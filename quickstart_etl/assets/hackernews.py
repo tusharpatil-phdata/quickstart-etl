@@ -9,7 +9,6 @@ from wordcloud import STOPWORDS, WordCloud
 
 from dagster import MetadataValue, OpExecutionContext, asset
 
-
 @asset(group_name="hackernews", compute_kind="HackerNews API")
 def hackernews_topstory_ids() -> List[int]:
     """
@@ -21,7 +20,6 @@ def hackernews_topstory_ids() -> List[int]:
     top_500_newstories = requests.get(newstories_url).json()
     return top_500_newstories
 
-
 @asset(group_name="hackernews", compute_kind="HackerNews API")
 def hackernews_topstories(
     context: OpExecutionContext, hackernews_topstory_ids: List[int]
@@ -31,7 +29,7 @@ def hackernews_topstories(
 
     API Docs: https://github.com/HackerNews/API#items
     """
-    
+    # >>> This is your custom log line <<<
     context.log.info("Tushar test: starting to fetch HackerNews top stories")
 
     results = []
@@ -54,7 +52,6 @@ def hackernews_topstories(
         }
     )
     return df
-
 
 @asset(group_name="hackernews", compute_kind="Plot")
 def hackernews_topstories_word_cloud(
